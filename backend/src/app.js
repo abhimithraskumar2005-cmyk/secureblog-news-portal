@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const authRoutes = require("./routes/auth.routes");
 const healthRoutes = require("./routes/health.routes");
 const { env } = require("./config/env");
 
@@ -24,6 +25,7 @@ const apiLimiter = rateLimit({
 });
 
 app.use("/api", apiLimiter);
+app.use("/api/auth", authRoutes);
 app.use("/health", healthRoutes);
 
 app.use((req, res) => {
