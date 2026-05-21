@@ -2,6 +2,7 @@ const crypto = require("crypto");
 
 const users = [];
 const loginLogs = [];
+const posts = [];
 
 function createId() {
   return crypto.randomUUID();
@@ -10,5 +11,6 @@ function createId() {
 module.exports = {
   users,
   loginLogs,
+  posts,
   createId
 };
