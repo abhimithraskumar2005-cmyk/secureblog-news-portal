@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureBlog</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>SecureBlog</h1>
+        <p>Cloud-Based Blog and News Portal</p>
+      </div>
+      <nav class="nav-actions">
+        <button id="refreshPublicBtn" type="button">Refresh</button>
+        <button id="logoutBtn" class="secondary hidden" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section class="panel auth-panel">
+        <div class="tabs">
+          <button class="tab active" id="loginTab" type="button">Login</button>
+          <button class="tab" id="registerTab" type="button">Register</button>
+        </div>
+
+        <form id="loginForm" class="stack">
+          <h2>Login</h2>
+          <label>
+            Email
+            <input id="loginEmail" type="email" value="normal@example.com" required />
+          </label>
+          <label>
+            Password
+            <input id="loginPassword" type="password" value="Password123" required />
+          </label>
+          <button type="submit">Login</button>
+        </form>
+
+        <form id="registerForm" class="stack hidden">
+          <h2>Register</h2>
+          <label>
+            Name
+            <input id="registerName" type="text" value="Normal User" required />
+          </label>
+          <label>
+            Email
+            <input id="registerEmail" type="email" value="normal@example.com" required />
+          </label>
+          <label>
+            Password
+            <input id="registerPassword" type="password" value="Password123" required />
+          </label>
+          <label>
+            Role
+            <select id="registerRole">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <button type="submit">Create Account</button>
+        </form>
+
+        <div class="status" id="statusBox">Backend API: http://localhost:3000</div>
+      </section>
+
+      <section class="panel">
+        <div class="section-header">
+          <div>
+            <h2>Published Posts</h2>
+            <p>Visible to public readers after admin approval.</p>
+          </div>
+        </div>
+        <div id="publicPosts" class="post-list"></div>
+      </section>
+
+      <section id="userPanel" class="panel hidden">
+        <div class="section-header">
+          <div>
+            <h2>User Dashboard</h2>
+            <p id="userMeta">Create and manage your blog/news posts.</p>
+          </div>
+        </div>
+
+        <form id="postForm" class="post-form">
+          <input id="postId" type="hidden" />
+          <label>
+            Title
+            <input id="postTitle" type="text" placeholder="News title" required />
+          </label>
+          <label>
+            Category
+            <input id="postCategory" type="text" placeholder="Cloud" required />
+          </label>
+          <label class="wide">
+            Content
+            <textarea id="postContent" placeholder="Write your post content..." required></textarea>
+          </label>
+          <button id="savePostBtn" type="submit">Save Post</button>
+          <button id="resetPostFormBtn" class="secondary" type="button">Clear</button>
+        </form>
+
+        <h3>My Posts</h3>
+        <div id="myPosts" class="post-list"></div>
+      </section>
+
+      <section id="adminPanel" class="panel hidden">
+        <div class="section-header">
+          <div>
+            <h2>Admin Dashboard</h2>
+            <p>Review, publish, reject, or monitor submitted posts.</p>
+          </div>
+        </div>
+        <div id="adminPosts" class="post-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
