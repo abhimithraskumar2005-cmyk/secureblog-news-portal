@@ -10,7 +10,28 @@ const { env } = require("./config/env");
 
 const app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        imgSrc: ["'self'", "data:"],
+        connectSrc: ["'self'"]
+      }
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true
+    },
+    frameguard: {
+      action: "deny"
+    },
+    noSniff: true
+  })
+);
 app.use(
   cors({
     origin: env.allowedOrigin,
