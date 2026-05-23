@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: secureblog-backend
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: ""
+      JWT_SECRET: change_this_secret_before_deployment
+      JWT_EXPIRES_IN: 1h
+      ALLOWED_ORIGIN: http://localhost:5173
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: secureblog-frontend
+    environment:
+      PORT: 5173
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
